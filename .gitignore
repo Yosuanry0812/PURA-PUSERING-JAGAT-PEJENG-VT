@@ -1,0 +1,24 @@
+.env*
+!.env.example
+node_modules/
+.next/
+out/
+*.tsbuildinfo
+playwright-report/
+test-results/
+graphify-out/
+.supabase/
+.openai/
+.vercel/
+coverage/
+*.log
+*.dpapi
+*.pem
+*.key
+*.pfx
+*.p12
+
+# Local AI Security Audit Skill
+/.agents/skills/security-audit/
+/.claude/skills/security-audit
+/skills-lock.json
