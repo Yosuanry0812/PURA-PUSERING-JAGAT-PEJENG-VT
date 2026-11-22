@@ -2,7 +2,7 @@
   {
     "key": "split-gateway",
     "path": "reference/split-gateway.webp",
-    "src": "/images/reference/split-gateway.webp",
+    "src": "/gambar/split-gateway.webp",
     "title": "Gerbang terbelah Pura Pusering Jagat Pejeng",
     "author": "Anandajoti Bhikkhu",
     "authorUrl": "https://commons.wikimedia.org/wiki/User:Anandajoti",
@@ -12,12 +12,12 @@
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
     "date": "2022-11-12",
     "changes": "Ukuran diperkecil, WebP, tanpa EXIF; crop pada sebagian tampilan.",
-    "bytes": 505332
+    "bytes": 193962
   },
   {
     "key": "main-gate",
     "path": "reference/main-gate.webp",
-    "src": "/images/reference/main-gate.webp",
+    "src": "/gambar/main-gate.webp",
     "title": "Gerbang utama Pura Pusering Jagat Pejeng",
     "author": "Anandajoti Bhikkhu",
     "authorUrl": "https://commons.wikimedia.org/wiki/User:Anandajoti",
@@ -27,6 +27,6 @@
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
     "date": "2022-11-12",
     "changes": "Ukuran diperkecil, WebP, tanpa EXIF; crop pada sebagian tampilan.",
-    "bytes": 291020
+    "bytes": 172428
   }
 ]

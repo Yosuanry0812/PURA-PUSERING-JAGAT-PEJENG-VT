@@ -21,7 +21,7 @@ export function Media({
         src={src}
         alt={alt || referencePhoto(path)?.title || ""}
         fill
-        unoptimized={!referencePhoto(path)}
+        unoptimized={!src.startsWith("/gambar/")}
         sizes="(max-width: 768px) 100vw, 50vw"
         priority={priority}
       />

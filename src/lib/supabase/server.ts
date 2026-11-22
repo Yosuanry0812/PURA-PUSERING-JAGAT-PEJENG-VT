@@ -30,7 +30,12 @@ export function publicClient() {
       detectSessionInUrl: false,
     },
     global: {
-      fetch: (url, init) => fetch(url, { ...init, cache: "no-store" }),
+      fetch: (url, init) =>
+        fetch(url, {
+          ...init,
+          signal: AbortSignal.timeout(2000),
+          next: { revalidate: 60 },
+        }),
     },
   });
 }

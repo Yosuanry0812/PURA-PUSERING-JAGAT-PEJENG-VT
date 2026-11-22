@@ -1,4 +1,4 @@
-import photos from "../../public/images/reference/attribution.json";
+import photos from "../../public/gambar/attribution.json";
 export const referencePhotos = photos;
 export function referencePhoto(value: unknown) {
   return referencePhotos.find((p) => p.path === value);

@@ -23,7 +23,10 @@ export const content = cache(
   ): Promise<Collection> => {
     if (!configured()) return { rows: [], state: "unconfigured", count: 0 };
     try {
-      let q = publicClient().from(table).select("*", { count: "exact" });
+      let q = publicClient()
+        .from(table)
+        .select("*", { count: "exact" })
+        .retry(false);
       if (
         ["history_sections", "temple_objects", "gallery_items"].includes(table)
       )
@@ -53,6 +56,8 @@ export function text(row: ContentRow | undefined, key: string, fallback = "") {
 }
 export async function galleryCategories() {
   if (!configured()) return [];
-  const { data, error } = await publicClient().rpc("gallery_categories");
+  const { data, error } = await publicClient()
+    .rpc("gallery_categories")
+    .retry(false);
   return error ? [] : (data as { category: string }[]).map((x) => x.category);
 }

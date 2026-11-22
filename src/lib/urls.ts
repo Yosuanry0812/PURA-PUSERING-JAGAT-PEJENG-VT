@@ -14,6 +14,12 @@ export function validTour(value: string, hosts: string[]) {
   );
 }
 export function mediaUrl(value: unknown) {
+  if (
+    typeof value === "string" &&
+    /^gambar\/[a-zA-Z0-9._-]+(\/[a-zA-Z0-9._-]+)*$/.test(value) &&
+    !value.includes("..")
+  )
+    return "/" + value;
   const reference = referencePhoto(value);
   if (reference) return reference.src;
   return typeof value === "string" &&

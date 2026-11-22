@@ -1,24 +1,57 @@
-.env*
-!.env.example
+# Dependencies
 node_modules/
+.pnp
+.pnp.js
+
+# Next.js build
 .next/
 out/
+build/
+next-env.d.ts
 *.tsbuildinfo
-playwright-report/
-test-results/
-graphify-out/
-.supabase/
-.openai/
-.vercel/
-coverage/
-*.log
-*.dpapi
+
+# Environment & rahasia (hanya .env.example yang boleh di-push)
+.env
+.env.*
+!.env.example
 *.pem
 *.key
 *.pfx
 *.p12
+*.dpapi
 
-# Local AI Security Audit Skill
-/.agents/skills/security-audit/
-/.claude/skills/security-audit
-/skills-lock.json
+# Test & cache
+coverage/
+playwright-report/
+test-results/
+.vitest/
+*.log
+npm-debug.log*
+pnpm-debug.log*
+
+# Platform / tool lokal
+.vercel/
+.supabase/
+supabase/.temp/
+graphify-out/
+.graphifyignore
+.openai/
+
+# Agent AI, Claude, git hooks, dan konfigurasi tool non-kode
+.claude/
+.agents/
+.githooks/
+.codex/
+.cursor/
+.gemini/
+.github/copilot-instructions.md
+CLAUDE.md
+AGENTS.md
+GEMINI.md
+skills-lock.json
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

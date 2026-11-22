@@ -8,7 +8,7 @@ import { content, text } from "@/lib/content";
 import { mediaUrl, safeHttps } from "@/lib/urls";
 import { PhotoCredits } from "@/components/public/photo-credits";
 import "../public-theme.css";
-export const dynamic = "force-dynamic";
+export const revalidate = 60;
 export default async function PublicLayout({
   children,
 }: {
@@ -31,7 +31,7 @@ export default async function PublicLayout({
             fill
             priority
             sizes="100vw"
-            unoptimized={!background.startsWith("/images/")}
+            unoptimized={!background.startsWith("/gambar/")}
           />
         )}
       </div>
