@@ -20,7 +20,6 @@ export const historySections = [
 export const historyCover = {
   path: "reference/temple.webp",
   alt: "Halaman pura dengan pelinggih, gapura belah, dan dua arca penjaga di Pura Pusering Jagat Pejeng",
-  caption: "Halaman Pura Pusering Jagat, Desa Pejeng Tengah, Gianyar",
 };
 
 export const historyIntro = {
@@ -32,7 +31,6 @@ export const historyIntro = {
   ],
   bylineLabel: "Narasumber",
   byline: "Jero Mangku Pura Puser Ing Jagat",
-  editor: "Disunting oleh Tim KKN PNB Desa Pejeng 2026",
 };
 
 export const historyFacts = [
@@ -63,7 +61,6 @@ export const historyRelics = [
     body: "Bejana batu berbentuk silinder ini berfungsi sebagai wadah air suci atau tirta. Pada dindingnya terpahat relief Samudramanthana, kisah para dewa dan asura mengaduk lautan susu demi memperoleh tirta amerta, air kehidupan. Relief itu menampilkan delapan ekor naga, para dewa penunjang, serta kinnara dan kinnari yang terbang di atas latar pegunungan.",
     image: "reference/pejeng-vessel.webp",
     alt: "Bejana Pejeng, bejana batu silinder berbalut kain, berdiri di bawah bale beratap anyaman",
-    caption: "Bejana Pejeng",
   },
   {
     slug: "gedong-purusa-predana",
@@ -72,7 +69,6 @@ export const historyRelics = [
     body: "Pelinggih ini menaungi simbol Purusa dan Predana: unsur kejiwaan (laki-laki) dan unsur kebendaan (perempuan). Dalam ajaran Hindu, keduanya dipercaya sebagai ciptaan pertama Tuhan sekaligus sumber kehidupan. Umat dari berbagai latar agama yang memohon keturunan kerap bersembahyang di sini.",
     image: "reference/lingas.webp",
     alt: "Kumpulan lingga dan arca batu berbalut kain kuning dan putih di sebuah bale",
-    caption: "Kumpulan lingga batu di kawasan pura",
   },
   {
     slug: "telaga-maya",
@@ -81,7 +77,6 @@ export const historyRelics = [
     body: "Di sisi Utama Mandala terdapat sebuah kolam kering. Konon, sesajen atau pekelem yang dihaturkan di telaga ini akan muncul kembali di perairan Nusa Penida, keyakinan yang memperkuat kesakralan Telaga Maya di mata masyarakat setempat.",
     image: "reference/empty-pond.webp",
     alt: "Kolam bundar berbingkai batu dengan dasar berumput di halaman pura",
-    caption: "Kolam kering di kawasan pura",
   },
 ];
 
@@ -90,7 +85,6 @@ export const historyAncient = {
   body: "Kawasan Pejeng menyimpan banyak peninggalan arkeologis, sehingga wilayah ini diyakini menjadi salah satu pusat peradaban Bali Kuno. Pura Pusering Jagat adalah salah satu saksinya, dan naskah kuno ikut menyebut namanya.",
   image: "reference/old-statues.webp",
   alt: "Bale beratap ijuk berisi arca-arca kuno di halaman pura",
-  caption: "Arca-arca kuno di sebuah bale dalam pura",
 };
 
 export const historyTimeline = [
@@ -142,12 +136,10 @@ export const historyMandala = {
     {
       image: "reference/split-gateway.webp",
       alt: "Gerbang terbelah Pura Pusering Jagat Pejeng",
-      caption: "Gerbang terbelah",
     },
     {
       image: "reference/main-gate.webp",
       alt: "Gerbang utama Pura Pusering Jagat Pejeng",
-      caption: "Gerbang utama",
     },
   ],
 };

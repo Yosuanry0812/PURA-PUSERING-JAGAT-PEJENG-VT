@@ -1,6 +1,8 @@
+import type { CSSProperties } from "react";
 import { CalendarDays, Flower2, Hand, Shirt, VolumeX } from "lucide-react";
 import { content, text } from "@/lib/content";
 import { PageHero, Media, Eyebrow, Prose } from "@/components/public/ui";
+import { Reveal } from "@/components/public/reveal";
 import { referenceSource } from "@/lib/reference-content";
 import {
   historyAncient,
@@ -33,6 +35,8 @@ const icons = {
   calendar: CalendarDays,
 };
 const num = (i: number) => String(i + 1).padStart(2, "0");
+// Jeda animasi bertahap (ms) antar elemen sejenis.
+const delay = (i: number) => ({ "--d": i * 90 + "ms" }) as CSSProperties;
 
 export default async function History() {
   const data = await content("history_sections", { limit: 200 });
@@ -48,18 +52,21 @@ export default async function History() {
   return (
     <>
       <PageHero {...historyHero} />
-      <div className="container section history-page">
-        <figure className="history-cover">
+      <Reveal className="container section history-page">
+        <div className="history-cover" data-reveal="zoom">
           <Media
             path={historyCover.path}
             alt={historyCover.alt}
             priority
             className="history-cover-media"
           />
-          <figcaption>{historyCover.caption}</figcaption>
-        </figure>
+        </div>
 
-        <nav className="history-toc" aria-label="Bagian sejarah">
+        <nav
+          className="history-toc"
+          aria-label="Bagian sejarah"
+          data-reveal="up"
+        >
           {toc.map((s, i) => (
             <a href={"#" + s.id} key={s.id}>
               <span>{num(i)}</span>
@@ -74,24 +81,36 @@ export default async function History() {
           aria-labelledby="titik-tengah-h"
         >
           <div className="hx-intro-text">
-            <Eyebrow>BAGIAN 01</Eyebrow>
-            <h2 id="titik-tengah-h">{historyIntro.title}</h2>
-            <p className="body-large">{historyIntro.lead}</p>
-            {historyIntro.paragraphs.map((p) => (
-              <p className="hx-text" key={p.slice(0, 24)}>
+            <div data-reveal="up">
+              <Eyebrow>BAGIAN 01</Eyebrow>
+              <h2 id="titik-tengah-h">{historyIntro.title}</h2>
+            </div>
+            <p
+              className="body-large hx-quote"
+              data-reveal="up"
+              style={delay(1)}
+            >
+              {historyIntro.lead}
+            </p>
+            {historyIntro.paragraphs.map((p, i) => (
+              <p
+                className="hx-text"
+                key={p.slice(0, 24)}
+                data-reveal="up"
+                style={delay(i + 2)}
+              >
                 {p}
               </p>
             ))}
           </div>
           <aside className="hx-intro-side" aria-label="Fakta singkat">
-            <div className="hx-byline">
+            <div className="hx-byline" data-reveal="right">
               <span>{historyIntro.bylineLabel}</span>
               <strong>{historyIntro.byline}</strong>
-              <small>{historyIntro.editor}</small>
             </div>
             <dl className="hx-facts">
-              {historyFacts.map((f) => (
-                <div key={f.label}>
+              {historyFacts.map((f, i) => (
+                <div key={f.label} data-reveal="up" style={delay(i + 1)}>
                   <dt>{f.label}</dt>
                   <dd>{f.value}</dd>
                   <dd className="hx-fact-note">{f.note}</dd>
@@ -106,16 +125,15 @@ export default async function History() {
           className="hx-block"
           aria-labelledby="tiga-pusaka-h"
         >
-          <Eyebrow>BAGIAN 02</Eyebrow>
-          <h2 id="tiga-pusaka-h">{historyRelicsIntro.title}</h2>
-          <p className="body-large hx-lead">{historyRelicsIntro.body}</p>
+          <div className="hx-head" data-reveal="up">
+            <Eyebrow>BAGIAN 02</Eyebrow>
+            <h2 id="tiga-pusaka-h">{historyRelicsIntro.title}</h2>
+            <p className="body-large hx-lead">{historyRelicsIntro.body}</p>
+          </div>
           <div className="hx-relics">
             {historyRelics.map((r, i) => (
-              <article className="hx-relic" key={r.slug}>
-                <figure>
-                  <Media path={r.image} alt={r.alt} />
-                  <figcaption>{r.caption}</figcaption>
-                </figure>
+              <article className="hx-relic" key={r.slug} data-reveal="up">
+                <Media path={r.image} alt={r.alt} />
                 <div>
                   <span className="hx-number">{num(i)}</span>
                   <h3>{r.title}</h3>
@@ -132,18 +150,21 @@ export default async function History() {
           className="hx-block"
           aria-labelledby="jejak-bali-kuno-h"
         >
-          <Eyebrow>BAGIAN 03</Eyebrow>
-          <h2 id="jejak-bali-kuno-h">{historyAncient.title}</h2>
           <div className="hx-ancient">
-            <figure>
-              <Media path={historyAncient.image} alt={historyAncient.alt} />
-              <figcaption>{historyAncient.caption}</figcaption>
-            </figure>
-            <p className="body-large">{historyAncient.body}</p>
+            <div className="hx-ancient-text" data-reveal="up">
+              <Eyebrow>BAGIAN 03</Eyebrow>
+              <h2 id="jejak-bali-kuno-h">{historyAncient.title}</h2>
+              <p className="body-large">{historyAncient.body}</p>
+            </div>
+            <Media
+              path={historyAncient.image}
+              alt={historyAncient.alt}
+              className="hx-ancient-photo"
+            />
           </div>
           <ol className="hx-timeline">
-            {historyTimeline.map((t) => (
-              <li key={t.era}>
+            {historyTimeline.map((t, i) => (
+              <li key={t.era} data-reveal="up" style={delay(i)}>
                 <span className="hx-era">{t.era}</span>
                 <h3>{t.title}</h3>
                 <p className="hx-text">{t.body}</p>
@@ -157,12 +178,14 @@ export default async function History() {
           className="hx-block"
           aria-labelledby="tri-mandala-h"
         >
-          <Eyebrow>BAGIAN 04</Eyebrow>
-          <h2 id="tri-mandala-h">{historyMandala.title}</h2>
-          <p className="body-large hx-lead">{historyMandala.body}</p>
+          <div className="hx-head" data-reveal="up">
+            <Eyebrow>BAGIAN 04</Eyebrow>
+            <h2 id="tri-mandala-h">{historyMandala.title}</h2>
+            <p className="body-large hx-lead">{historyMandala.body}</p>
+          </div>
           <ol className="hx-mandala">
             {historyMandala.levels.map((l, i) => (
-              <li key={l.name}>
+              <li key={l.name} data-reveal="up" style={delay(i)}>
                 <span className="hx-number">{num(i)}</span>
                 <h3>{l.name}</h3>
                 <p className="hx-subtitle">{l.place}</p>
@@ -171,14 +194,15 @@ export default async function History() {
             ))}
           </ol>
           <div className="hx-gates">
-            {historyMandala.photos.map((p) => (
-              <figure key={p.image}>
+            {historyMandala.photos.map((p, i) => (
+              <div key={p.image} data-reveal="up" style={delay(i)}>
                 <Media path={p.image} alt={p.alt} />
-                <figcaption>{p.caption}</figcaption>
-              </figure>
+              </div>
             ))}
           </div>
-          <p className="hx-text hx-closing">{historyMandala.closing}</p>
+          <p className="hx-text hx-closing" data-reveal="up">
+            {historyMandala.closing}
+          </p>
         </section>
 
         <section
@@ -186,18 +210,20 @@ export default async function History() {
           className="hx-block hx-visit"
           aria-labelledby="berkunjung-h"
         >
-          <figure className="hx-visit-photo">
+          <div className="hx-visit-photo" data-reveal="left">
             <Media path={historyVisit.image} alt={historyVisit.alt} />
-          </figure>
+          </div>
           <div>
-            <Eyebrow>BAGIAN 05</Eyebrow>
-            <h2 id="berkunjung-h">{historyVisit.title}</h2>
-            <p className="body-large hx-lead">{historyVisit.body}</p>
+            <div className="hx-head" data-reveal="up">
+              <Eyebrow>BAGIAN 05</Eyebrow>
+              <h2 id="berkunjung-h">{historyVisit.title}</h2>
+              <p className="body-large hx-lead">{historyVisit.body}</p>
+            </div>
             <ul className="hx-etiquette">
-              {historyVisit.items.map((it) => {
+              {historyVisit.items.map((it, i) => {
                 const Icon = icons[it.icon];
                 return (
-                  <li key={it.title}>
+                  <li key={it.title} data-reveal="up" style={delay(i % 3)}>
                     <Icon size={20} strokeWidth={1.5} aria-hidden="true" />
                     <div>
                       <h3>{it.title}</h3>
@@ -207,7 +233,7 @@ export default async function History() {
                 );
               })}
             </ul>
-            <p className="hx-callout">
+            <p className="hx-callout" data-reveal="up">
               <strong>{historyVisit.closingTitle}</strong>{" "}
               {historyVisit.closing}
             </p>
@@ -220,13 +246,16 @@ export default async function History() {
             className="hx-block"
             aria-labelledby="catatan-tambahan-h"
           >
-            <Eyebrow>CATATAN TAMBAHAN</Eyebrow>
-            <h2 id="catatan-tambahan-h">Catatan tambahan</h2>
+            <div className="hx-head" data-reveal="up">
+              <Eyebrow>CATATAN TAMBAHAN</Eyebrow>
+              <h2 id="catatan-tambahan-h">Catatan tambahan</h2>
+            </div>
             {notes.map((r, i) => (
               <article
                 id={text(r, "slug")}
                 className={"history-section " + (i % 2 ? "reverse" : "")}
                 key={r.id}
+                data-reveal="up"
               >
                 {r.image_url && (
                   <Media path={r.image_url} alt={text(r, "image_alt")} />
@@ -258,10 +287,25 @@ export default async function History() {
           className="hx-block hx-sources"
           aria-labelledby="sumber-h"
         >
-          <Eyebrow>SUMBER</Eyebrow>
-          <h2 id="sumber-h">{historySources.title}</h2>
-          <p className="hx-text">{historySources.body}</p>
-          <ul className="hx-references">
+          <div data-reveal="up">
+            <Eyebrow>SUMBER</Eyebrow>
+            <h2 id="sumber-h">{historySources.title}</h2>
+            <p className="hx-text">{historySources.body}</p>
+            <p className="hx-source-links">
+              <a
+                className="source-link"
+                href={referenceSource.url}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Baca artikel rujukan lengkap ↗
+              </a>
+              <a className="source-link" href="#sumber-foto">
+                Sumber foto
+              </a>
+            </p>
+          </div>
+          <ul className="hx-references" data-reveal="up" style={delay(1)}>
             {historySources.references.map((r) => (
               <li key={r.url}>
                 <a href={r.url} target="_blank" rel="noopener noreferrer">
@@ -270,21 +314,8 @@ export default async function History() {
               </li>
             ))}
           </ul>
-          <p className="hx-source-links">
-            <a
-              className="source-link"
-              href={referenceSource.url}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Baca artikel rujukan lengkap ↗
-            </a>
-            <a className="source-link" href="#sumber-foto">
-              Sumber foto
-            </a>
-          </p>
         </section>
-      </div>
+      </Reveal>
     </>
   );
 }
