@@ -4,7 +4,7 @@ export function PhotoCredits() {
     <details className="photo-credits container" id="sumber-foto">
       <summary>Sumber foto sementara</summary>
       <p>
-        Foto gerbang Pura Pusering Jagat oleh{" "}
+        Foto Pura Pusering Jagat oleh{" "}
         <a
           href="https://commons.wikimedia.org/wiki/User:Anandajoti"
           target="_blank"
