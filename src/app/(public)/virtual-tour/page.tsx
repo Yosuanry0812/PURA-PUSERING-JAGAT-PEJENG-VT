@@ -1,14 +1,42 @@
+import type { CSSProperties } from "react";
 import { Compass, MousePointer2, Move, Maximize } from "lucide-react";
 import { content, text } from "@/lib/content";
 import Link from "next/link";
 import { resolveTourUrl } from "@/lib/tour";
 import { TourLaunch } from "@/components/virtual-tour/launch";
 import { PageHero, Media } from "@/components/public/ui";
+import { Reveal } from "@/components/public/reveal";
 import { TourViewer } from "@/components/virtual-tour/viewer";
+
 export const metadata = {
   title: "Virtual Tour 360 Pura Pusering Jagat",
   alternates: { canonical: "/virtual-tour" },
 };
+
+const steps = [
+  {
+    Icon: Move,
+    title: "Geser untuk melihat",
+    description: "Jelajahi pandangan ke berbagai arah.",
+  },
+  {
+    Icon: MousePointer2,
+    title: "Ikuti penanda",
+    description: "Pilih titik navigasi yang tersedia dalam tur.",
+  },
+  {
+    Icon: Maximize,
+    title: "Nikmati layar penuh",
+    description: "Gunakan layar penuh jika didukung perangkat.",
+  },
+];
+const glimpse = [
+  { path: "reference/split-gateway.webp", alt: "Gerbang terbelah pura" },
+  { path: "reference/temple.webp", alt: "Halaman pura dengan pelinggih" },
+  { path: "reference/shrine-umbrellas.webp", alt: "Pelinggih berpayung" },
+];
+const delay = (i: number) => ({ "--d": i * 100 + "ms" }) as CSSProperties;
+
 export default async function Tour() {
   const tour = await content("virtual_tour_settings");
   const t = tour.rows[0];
@@ -28,17 +56,19 @@ export default async function Tour() {
           "Kenali ruang dan warisan Pura Pusering Jagat Pejeng melalui pengalaman Virtual Tour 360.",
         )}
       />
-      <section className="container section">
-        <div className="tour-pending">
+      <Reveal className="container section tour-page">
+        <div className="tv-stage" data-reveal="zoom">
           <Media
             path={t?.cover_image_url || "reference/main-gate.webp"}
             alt={text(t, "cover_image_alt")}
+            priority
           />
-          <div>
-            <span className="round-icon">
-              <Compass size={38} strokeWidth={1} />
+          <div className="tv-panel">
+            <span className="tv-compass" aria-hidden="true">
+              <Compass size={34} strokeWidth={1.2} />
             </span>
-            <span className="eyebrow">
+            <span className={"tv-chip" + (url ? " is-live" : "")}>
+              <i aria-hidden="true" />
               {url ? "JELAJAH 360°" : "SEGERA HADIR"}
             </span>
             <h2>
@@ -59,8 +89,9 @@ export default async function Tour() {
             </div>
           </div>
         </div>
+
         {url && (
-          <div className="tour-embed">
+          <div className="tour-embed" data-reveal="up">
             <TourViewer
               url={url}
               title={text(
@@ -71,39 +102,57 @@ export default async function Tour() {
             />
           </div>
         )}
-        <div className="tour-guide">
-          {[
-            [
-              Move,
-              "Geser untuk melihat",
-              "Jelajahi pandangan ke berbagai arah.",
-            ],
-            [
-              MousePointer2,
-              "Ikuti penanda",
-              "Pilih titik navigasi yang tersedia dalam tur.",
-            ],
-            [
-              Maximize,
-              "Nikmati layar penuh",
-              "Gunakan layar penuh jika didukung perangkat.",
-            ],
-          ].map(([Icon, title, description]) => {
-            const I = Icon as typeof Move;
-            return (
-              <article key={String(title)}>
-                <I size={24} strokeWidth={1} />
-                <h3>{String(title)}</h3>
-                <p>{String(description)}</p>
-              </article>
-            );
-          })}
+
+        <section className="tv-block" aria-labelledby="tv-cara">
+          <div className="tv-head" data-reveal="up">
+            <h2 id="tv-cara">Cara menjelajah</h2>
+            <p>Tiga langkah sederhana untuk menikmati tur 360°.</p>
+          </div>
+          <ol className="tv-steps">
+            {steps.map(({ Icon, title, description }, i) => (
+              <li key={title} data-reveal="up" style={delay(i)}>
+                <span className="tv-step-no">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <span className="tv-step-icon">
+                  <Icon size={22} strokeWidth={1.4} aria-hidden="true" />
+                </span>
+                <h3>{title}</h3>
+                <p>{description}</p>
+              </li>
+            ))}
+          </ol>
+        </section>
+
+        <section className="tv-block" aria-labelledby="tv-suasana">
+          <div className="tv-head" data-reveal="up">
+            <h2 id="tv-suasana">Sekilas suasana pura</h2>
+            <p>Gambaran area yang akan Anda temui sebelum menjelajah.</p>
+          </div>
+          <div className="tv-glimpse">
+            {glimpse.map((g, i) => (
+              <div key={g.path} data-reveal="up" style={delay(i)}>
+                <Media path={g.path} alt={g.alt} />
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <div className="tv-end" data-reveal="up">
+          <p className="respect-note">
+            Hormati kesucian pura. Dokumentasi digital hanya menampilkan area
+            yang mendapat izin.
+          </p>
+          <div className="tv-end-links">
+            <Link href="/sejarah" className="text-link">
+              Baca sejarah pura ↗
+            </Link>
+            <Link href="/galeri" className="text-link">
+              Lihat galeri ↗
+            </Link>
+          </div>
         </div>
-        <p className="respect-note">
-          Hormati kesucian pura. Dokumentasi digital hanya menampilkan area yang
-          mendapat izin.
-        </p>
-      </section>
+      </Reveal>
     </>
   );
 }
