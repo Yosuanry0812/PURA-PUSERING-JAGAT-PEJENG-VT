@@ -76,8 +76,7 @@ export default async function Home() {
               priority
             />
             <figcaption>
-              {text(h, "hero_image_alt", "Gerbang Pura Pusering Jagat Pejeng")}{" "}
-              <a href="#sumber-foto">Sumber foto</a>
+              {text(h, "hero_image_alt", "Gerbang Pura Pusering Jagat Pejeng")}
             </figcaption>
           </figure>
         </div>

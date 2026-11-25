@@ -17,8 +17,6 @@ vi.mock("next/image", () => ({ default: () => null }));
 
 const respond = (value: Collection) =>
   vi.mocked(content).mockResolvedValue(value);
-const sumber =
-  "https://desa-pejeng-home.vercel.app/artikel/pura-pusering-jagat";
 const catatan = {
   rows: [
     {
@@ -46,9 +44,6 @@ describe("Narasi sejarah", () => {
         name: "Tri Mandala: tiga ruang menuju kesucian",
       }),
     ).toBeInTheDocument();
-    expect(
-      screen.getByRole("link", { name: /Baca artikel rujukan lengkap/ }),
-    ).toHaveAttribute("href", sumber);
     expect(
       screen.queryByRole("heading", { name: "Catatan tambahan" }),
     ).not.toBeInTheDocument();

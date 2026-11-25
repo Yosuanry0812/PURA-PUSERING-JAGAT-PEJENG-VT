@@ -6,7 +6,6 @@ import { Header } from "@/components/public/header";
 import { Brand } from "@/components/public/brand";
 import { content, text } from "@/lib/content";
 import { mediaUrl, safeHttps } from "@/lib/urls";
-import { PhotoCredits } from "@/components/public/photo-credits";
 import "../public-theme.css";
 export const revalidate = 60;
 export default async function PublicLayout({
@@ -107,7 +106,6 @@ export default async function PublicLayout({
             )}
           </div>
         </div>
-        <PhotoCredits />
         <div className="container footer-bottom">
           <span>
             © {new Date().getFullYear()} {name}.

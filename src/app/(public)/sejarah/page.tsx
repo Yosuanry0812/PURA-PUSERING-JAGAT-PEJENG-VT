@@ -1,9 +1,8 @@
 import type { CSSProperties } from "react";
 import { CalendarDays, Flower2, Hand, Shirt, VolumeX } from "lucide-react";
 import { content, text } from "@/lib/content";
-import { PageHero, Media, Eyebrow, Prose } from "@/components/public/ui";
+import { PageHero, Media, Prose } from "@/components/public/ui";
 import { Reveal } from "@/components/public/reveal";
-import { referenceSource } from "@/lib/reference-content";
 import {
   historyAncient,
   historyCover,
@@ -14,7 +13,6 @@ import {
   historyRelics,
   historyRelicsIntro,
   historySections,
-  historySources,
   historyTimeline,
   historyVisit,
 } from "@/lib/history-content";
@@ -43,9 +41,8 @@ export default async function History() {
   const notes = data.rows;
   const toc = notes.length
     ? [
-        ...historySections.slice(0, -1),
+        ...historySections,
         { id: "catatan-tambahan", label: "Catatan tambahan" },
-        historySections[historySections.length - 1],
       ]
     : historySections;
 
@@ -82,7 +79,6 @@ export default async function History() {
         >
           <div className="hx-intro-text">
             <div data-reveal="up">
-              <Eyebrow>BAGIAN 01</Eyebrow>
               <h2 id="titik-tengah-h">{historyIntro.title}</h2>
             </div>
             <p
@@ -126,7 +122,6 @@ export default async function History() {
           aria-labelledby="tiga-pusaka-h"
         >
           <div className="hx-head" data-reveal="up">
-            <Eyebrow>BAGIAN 02</Eyebrow>
             <h2 id="tiga-pusaka-h">{historyRelicsIntro.title}</h2>
             <p className="body-large hx-lead">{historyRelicsIntro.body}</p>
           </div>
@@ -152,7 +147,6 @@ export default async function History() {
         >
           <div className="hx-ancient">
             <div className="hx-ancient-text" data-reveal="up">
-              <Eyebrow>BAGIAN 03</Eyebrow>
               <h2 id="jejak-bali-kuno-h">{historyAncient.title}</h2>
               <p className="body-large">{historyAncient.body}</p>
             </div>
@@ -179,7 +173,6 @@ export default async function History() {
           aria-labelledby="tri-mandala-h"
         >
           <div className="hx-head" data-reveal="up">
-            <Eyebrow>BAGIAN 04</Eyebrow>
             <h2 id="tri-mandala-h">{historyMandala.title}</h2>
             <p className="body-large hx-lead">{historyMandala.body}</p>
           </div>
@@ -215,7 +208,6 @@ export default async function History() {
           </div>
           <div>
             <div className="hx-head" data-reveal="up">
-              <Eyebrow>BAGIAN 05</Eyebrow>
               <h2 id="berkunjung-h">{historyVisit.title}</h2>
               <p className="body-large hx-lead">{historyVisit.body}</p>
             </div>
@@ -247,7 +239,6 @@ export default async function History() {
             aria-labelledby="catatan-tambahan-h"
           >
             <div className="hx-head" data-reveal="up">
-              <Eyebrow>CATATAN TAMBAHAN</Eyebrow>
               <h2 id="catatan-tambahan-h">Catatan tambahan</h2>
             </div>
             {notes.map((r, i) => (
@@ -281,40 +272,6 @@ export default async function History() {
             ))}
           </section>
         )}
-
-        <section
-          id="sumber"
-          className="hx-block hx-sources"
-          aria-labelledby="sumber-h"
-        >
-          <div data-reveal="up">
-            <Eyebrow>SUMBER</Eyebrow>
-            <h2 id="sumber-h">{historySources.title}</h2>
-            <p className="hx-text">{historySources.body}</p>
-            <p className="hx-source-links">
-              <a
-                className="source-link"
-                href={referenceSource.url}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Baca artikel rujukan lengkap ↗
-              </a>
-              <a className="source-link" href="#sumber-foto">
-                Sumber foto
-              </a>
-            </p>
-          </div>
-          <ul className="hx-references" data-reveal="up" style={delay(1)}>
-            {historySources.references.map((r) => (
-              <li key={r.url}>
-                <a href={r.url} target="_blank" rel="noopener noreferrer">
-                  {r.label} ↗
-                </a>
-              </li>
-            ))}
-          </ul>
-        </section>
       </Reveal>
     </>
   );

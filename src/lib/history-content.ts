@@ -14,7 +14,6 @@ export const historySections = [
   { id: "jejak-bali-kuno", label: "Jejak peradaban Bali Kuno" },
   { id: "tri-mandala", label: "Tri Mandala" },
   { id: "berkunjung", label: "Berkunjung dengan hormat" },
-  { id: "sumber", label: "Sumber & rujukan" },
 ] as const;
 
 export const historyCover = {
@@ -179,26 +178,3 @@ export const historyVisit = {
   closingTitle: "Rahajeng rauh!",
   closing: "Selamat menyelami titik tengah semesta di Pura Puser Ing Jagat.",
 } as const;
-
-export const historySources = {
-  title: "Sumber & rujukan",
-  body: "Narasi ini disusun ulang dari artikel Tim KKN Desa Pejeng, dengan narasumber Jero Mangku Pura Puser Ing Jagat. Perkiraan waktu dan kepercayaan setempat disampaikan sesuai konteksnya.",
-  references: [
-    {
-      label: "Wikipedia: Pura Pusering Jagat",
-      url: "https://id.wikipedia.org/wiki/Pura_Pusering_Jagat",
-    },
-    {
-      label: "Ortibali: Pura Pusering Jagat Gianyar",
-      url: "https://ortibali.com/pura-pusering-jagat-gianyar/",
-    },
-    {
-      label: "Rumah123: Pura Pusering Jagat",
-      url: "https://www.rumah123.com/explore/kab-gianyar/pura-pusering-jagat/",
-    },
-    {
-      label: "Cagar Budaya Kabupaten Gianyar",
-      url: "https://cagarbudaya.gianyarkab.go.id/510404/13",
-    },
-  ],
-};

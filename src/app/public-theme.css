@@ -638,36 +638,6 @@
   border-top-color: #ffffff40;
   gap: 20px;
 }
-.public-site .photo-credits {
-  margin-bottom: 22px;
-  font-size: 11px;
-  color: #f3edda;
-}
-.public-site .photo-credits summary {
-  cursor: pointer;
-  width: max-content;
-  max-width: 100%;
-  text-decoration: underline;
-  text-underline-offset: 3px;
-  padding: 5px 0;
-}
-.public-site .photo-credits p {
-  font-size: 11px;
-  max-width: 900px;
-  margin-top: 12px;
-}
-.public-site .photo-credits ul {
-  margin: 10px 0 0;
-  padding-left: 18px;
-  max-width: 1000px;
-}
-.public-site .photo-credits li {
-  margin-block: 8px;
-}
-.public-site .photo-credits a {
-  text-decoration: underline;
-  text-underline-offset: 2px;
-}
 .reference-select {
   display: flex;
   flex-direction: column;
