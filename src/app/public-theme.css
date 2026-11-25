@@ -1895,3 +1895,35 @@
     transform: none;
   }
 }
+
+/* Beranda: hero satu layar penuh */
+.public-site .home-hero {
+  display: flex;
+  align-items: center;
+}
+.public-site .home-hero .hero-grid {
+  align-items: center;
+  min-height: 0;
+  padding-block: 40px 56px;
+}
+.public-site .home-hero .hero-copy {
+  padding-top: 0;
+  margin-bottom: 0;
+}
+.public-site .home-hero .hero-art .media {
+  aspect-ratio: 4 / 3.4;
+  max-height: min(68svh, 600px);
+}
+@media (max-width: 900px) {
+  .public-site .home-hero {
+    display: block;
+    min-height: 0;
+  }
+  .public-site .home-hero .hero-grid {
+    padding-block: 28px 48px;
+  }
+  .public-site .home-hero .hero-art .media {
+    aspect-ratio: 4 / 3;
+    max-height: none;
+  }
+}
