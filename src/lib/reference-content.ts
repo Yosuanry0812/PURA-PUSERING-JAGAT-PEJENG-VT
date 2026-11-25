@@ -8,53 +8,6 @@ export const referenceSource = {
   url: "https://desa-pejeng-home.vercel.app/artikel/pura-pusering-jagat",
 };
 
-export const referenceHistory: ContentRow[] = [
-  {
-    id: "reference-makna",
-    slug: "makna-pusering-jagat",
-    title: "Pusering Jagat, pusat keseimbangan spiritual",
-    image_url: "reference/split-gateway.webp",
-    image_alt: "Gerbang terbelah Pura Pusering Jagat Pejeng",
-    content:
-      "Di Pejeng, Gianyar, Pura Pusering Jagat dikenal sebagai salah satu Sad Kahyangan Bali. Namanya bermakna pusat dunia, berkaitan dengan keyakinan kepada Dewa Siwa sebagai penjaga keseimbangan. Kedudukan ini merupakan pemaknaan spiritual, bukan hasil pengukuran geografis.",
-  },
-  {
-    id: "reference-bali-kuno",
-    slug: "jejak-bali-kuno",
-    title: "Jejak Bali Kuno di Pejeng",
-    content:
-      "Pejeng berkaitan erat dengan peradaban Bali Kuno. Artikel rujukan memperkirakan awal pura sekitar abad ke-10 Masehi, tetapi tahun pendiriannya belum pasti. Perkiraan tersebut perlu dibedakan dari penanggalan yang telah dibuktikan.",
-  },
-  {
-    id: "reference-peninggalan",
-    slug: "peninggalan-dan-makna",
-    title: "Peninggalan dan makna yang menyertainya",
-    content:
-      "Bejana Pejeng merupakan wadah batu untuk tirta, dengan relief Samudramanthana, kisah pencarian air kehidupan.\n\nGedong Purusa Predana menaungi simbol Lingga–Yoni, yang dimaknai sebagai pasangan unsur kehidupan.\n\nTelaga Maya dikaitkan dengan kisah hubungan spiritual dengan Nusa Penida. Kisah ini disampaikan sebagai kepercayaan masyarakat setempat.",
-  },
-  {
-    id: "reference-mandala",
-    slug: "tata-ruang-tri-mandala",
-    title: "Tri Mandala, urutan ruang menuju kesucian",
-    image_url: "reference/main-gate.webp",
-    image_alt: "Gerbang utama Pura Pusering Jagat Pejeng",
-    content:
-      "Tata ruang pura mengenal Nista Mandala, Madya Mandala, dan Utama Mandala: halaman luar, tengah, dan utama. Susunannya mencerminkan tingkatan kesucian, sekaligus mengarahkan kegiatan umat di dalam pura.",
-  },
-  {
-    id: "reference-etika",
-    slug: "etika-dan-pelestarian",
-    title: "Mengenal warisan, menghormati ruang suci",
-    content:
-      "Pura tetap menjadi tempat persembahyangan. Berpakaian sopan, menjaga ketenangan, dan mengikuti petunjuk pengelola merupakan bagian dari kunjungan yang menghormati tradisi. Jangan menyentuh peninggalan atau memasuki area terbatas tanpa izin.",
-  },
-].map((section) => ({
-  ...section,
-  image_url: section.image_url ?? null,
-  image_alt: section.image_alt ?? null,
-  source_url: referenceSource.url,
-}));
-
 export const referenceHome: ContentRow = {
   id: "reference-home",
   hero_title: "Menjelajahi Warisan Suci Pura Pusering Jagat Pejeng",

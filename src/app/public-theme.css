@@ -1024,16 +1024,6 @@
 }
 
 /* Narasi rujukan dan akses tur tetap terbaca pada latar fotografi. */
-.public-site .history-reference {
-  padding: 24px 28px;
-  margin-bottom: 28px;
-  background: #111a12d9;
-  border: 1px solid #eed16d66;
-  border-radius: 10px;
-}
-.public-site .history-reference .source-link {
-  margin-top: 12px;
-}
 .public-site .content-attribution {
   margin-top: 20px;
   font-size: 12px;
@@ -1064,8 +1054,310 @@
 .public-site .tour-embed {
   margin-top: 36px;
 }
-@media (max-width: 650px) {
-  .public-site .history-reference {
-    padding: 22px;
+
+/* Halaman Sejarah: layout editorial */
+.public-site .history-page figure {
+  margin: 0;
+}
+.public-site .history-page figcaption {
+  font-size: 12px;
+  color: #ffffffd9;
+  margin-top: 10px;
+}
+.public-site .history-cover-media {
+  aspect-ratio: 21 / 9;
+  border: 1px solid #ffffffaa;
+  border-radius: 10px;
+}
+.public-site .history-page .history-toc {
+  margin-top: 36px;
+}
+.public-site .hx-block {
+  padding-block: 56px;
+  border-bottom: 1px solid #ffffff30;
+  scroll-margin-top: 100px;
+}
+.public-site .hx-block > h2,
+.public-site .hx-intro-text > h2,
+.public-site .hx-visit h2 {
+  font-size: 32px;
+  margin-bottom: 16px;
+}
+.public-site .hx-block h3 {
+  font-size: 20px;
+  margin-bottom: 6px;
+}
+.public-site .hx-block .body-large {
+  color: #fff;
+  font-size: 16px;
+  line-height: 1.8;
+}
+.public-site .hx-lead {
+  max-width: 760px;
+  margin-bottom: 30px;
+}
+.public-site .hx-text {
+  font-size: 14.5px;
+  line-height: 1.95;
+  color: #fff;
+  margin-top: 14px;
+}
+.public-site .hx-subtitle {
+  font-size: 13px;
+  color: #f4dd8d;
+  letter-spacing: 0.02em;
+}
+.public-site .hx-number {
+  display: inline-block;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  color: #f4dd8d;
+  margin-bottom: 8px;
+}
+.public-site .hx-intro {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 48px;
+  align-items: start;
+}
+.public-site .hx-intro-side {
+  display: grid;
+  gap: 18px;
+}
+.public-site .hx-byline,
+.public-site .hx-facts > div {
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid #ffffff80;
+  border-radius: 10px;
+  padding: 18px 20px;
+  display: grid;
+  gap: 4px;
+}
+.public-site .hx-byline span,
+.public-site .hx-facts dt {
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #f4dd8d;
+}
+.public-site .hx-byline strong,
+.public-site .hx-facts dd:not(.hx-fact-note) {
+  font-size: 17px;
+  font-weight: 700;
+  margin: 0;
+}
+.public-site .hx-byline small,
+.public-site .hx-facts .hx-fact-note {
+  font-size: 12px;
+  color: #ffffffd9;
+}
+.public-site .hx-facts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin: 0;
+}
+.public-site .hx-relics {
+  display: grid;
+  gap: 28px;
+}
+.public-site .hx-relic {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 36px;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid #ffffff66;
+  border-radius: 10px;
+  padding: 22px;
+}
+.public-site .hx-relic:nth-child(even) figure {
+  order: 2;
+}
+.public-site .hx-relic .media,
+.public-site .hx-ancient .media,
+.public-site .hx-gates .media,
+.public-site .hx-visit-photo .media {
+  border: 1px solid #ffffff99;
+  border-radius: 8px;
+}
+.public-site .hx-ancient {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 36px;
+  align-items: center;
+}
+.public-site .hx-timeline {
+  list-style: none;
+  margin: 44px 0 0;
+  padding: 0 0 0 26px;
+  border-left: 1px solid #f4dd8d99;
+  display: grid;
+  gap: 30px;
+}
+.public-site .hx-timeline li {
+  position: relative;
+}
+.public-site .hx-timeline li::before {
+  content: "";
+  position: absolute;
+  left: -32px;
+  top: 6px;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: #f4dd8d;
+  box-shadow: 0 0 0 4px rgba(244, 221, 141, 0.25);
+}
+.public-site .hx-era {
+  display: block;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #f4dd8d;
+  margin-bottom: 4px;
+}
+.public-site .hx-timeline .hx-text {
+  max-width: 720px;
+  margin-top: 6px;
+}
+.public-site .hx-mandala {
+  list-style: none;
+  margin: 0 0 32px;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+.public-site .hx-mandala li {
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid #ffffff80;
+  border-radius: 10px;
+  padding: 24px;
+}
+.public-site .hx-mandala li:last-child {
+  border-color: #f4dd8d;
+}
+.public-site .hx-gates {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+.public-site .hx-closing {
+  max-width: 760px;
+  margin-top: 28px;
+}
+.public-site .hx-visit {
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  gap: 48px;
+  align-items: start;
+}
+.public-site .hx-visit-photo .media {
+  aspect-ratio: 2 / 3;
+}
+.public-site .hx-etiquette {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 14px;
+}
+.public-site .hx-etiquette li {
+  display: grid;
+  grid-template-columns: 22px 1fr;
+  gap: 14px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid #ffffff55;
+  border-radius: 10px;
+  padding: 16px 18px;
+}
+.public-site .hx-etiquette svg {
+  color: #f4dd8d;
+  margin-top: 2px;
+}
+.public-site .hx-etiquette h3 {
+  font-size: 16px;
+  margin-bottom: 4px;
+}
+.public-site .hx-etiquette p {
+  font-size: 14px;
+  line-height: 1.8;
+  color: #fff;
+}
+.public-site .hx-callout {
+  margin-top: 24px;
+  padding: 20px 22px;
+  border: 1px solid #f4dd8d;
+  border-radius: 10px;
+  background: rgba(244, 221, 141, 0.12);
+  font-size: 15px;
+  line-height: 1.7;
+}
+.public-site .hx-callout strong {
+  color: #f4dd8d;
+}
+.public-site .hx-references {
+  list-style: none;
+  margin: 18px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+}
+.public-site .hx-references a {
+  color: #f4df9c;
+  font-size: 14px;
+  border-bottom: 1px solid #f4df9c80;
+}
+.public-site .hx-source-links {
+  display: flex;
+  gap: 26px;
+  flex-wrap: wrap;
+}
+.public-site .hx-block > .history-section:first-of-type {
+  margin-top: 10px;
+}
+.public-site .hx-block > .history-section {
+  padding-block: 22px;
+}
+@media (max-width: 900px) {
+  .public-site .hx-intro,
+  .public-site .hx-relic,
+  .public-site .hx-ancient,
+  .public-site .hx-visit {
+    grid-template-columns: 1fr;
+    gap: 26px;
   }
+  .public-site .hx-relic:nth-child(even) figure {
+    order: 0;
+  }
+  .public-site .hx-mandala {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 600px) {
+  .public-site .history-cover-media {
+    aspect-ratio: 4 / 3;
+  }
+  .public-site .hx-block {
+    padding-block: 38px;
+  }
+  .public-site .hx-block > h2,
+  .public-site .hx-intro-text > h2,
+  .public-site .hx-visit h2 {
+    font-size: 26px;
+  }
+  .public-site .hx-relic {
+    padding: 16px;
+  }
+  .public-site .hx-gates,
+  .public-site .hx-facts {
+    grid-template-columns: 1fr;
+  }
+  .public-site .hx-visit-photo .media {
+    aspect-ratio: 4 / 5;
+  }
+}
+.public-site .hx-block > h2 + .hx-ancient {
+  margin-top: 26px;
 }

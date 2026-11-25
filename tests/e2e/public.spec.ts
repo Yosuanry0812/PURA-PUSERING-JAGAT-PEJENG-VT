@@ -131,10 +131,10 @@ test("narasi rujukan dan jalur menuju virtual tour tersedia", async ({
   );
   await page.goto("/sejarah");
   await expect(
-    page.getByRole("heading", { name: "Jejak Bali Kuno di Pejeng" }),
+    page.getByRole("heading", { name: "Jejak peradaban Bali Kuno" }),
   ).toBeVisible();
   const toc = page.getByRole("navigation", { name: "Bagian sejarah" });
-  await toc.getByRole("link", { name: /Peninggalan dan makna/ }).click();
-  await expect(page).toHaveURL(/#peninggalan-dan-makna$/);
-  await expect(page.locator("#peninggalan-dan-makna")).toBeInViewport();
+  await toc.getByRole("link", { name: /Tiga pusaka/ }).click();
+  await expect(page).toHaveURL(/#tiga-pusaka$/);
+  await expect(page.locator("#tiga-pusaka")).toBeInViewport();
 });

@@ -17,50 +17,69 @@ vi.mock("next/image", () => ({ default: () => null }));
 
 const respond = (value: Collection) =>
   vi.mocked(content).mockResolvedValue(value);
+const sumber =
+  "https://desa-pejeng-home.vercel.app/artikel/pura-pusering-jagat";
+const catatan = {
+  rows: [
+    {
+      id: 1,
+      slug: "kisah-pengelola",
+      title: "Kisah dari pengelola",
+      content: "Narasi terbit dari CMS.",
+    },
+  ],
+  state: "ready" as const,
+  count: 1,
+};
 describe("Narasi sejarah", () => {
-  it("menampilkan narasi rujukan saat CMS belum dapat diakses", async () => {
+  it("menampilkan narasi editorial saat CMS belum dapat diakses", async () => {
     respond({ rows: [], state: "error", count: 0 });
     render(await History());
     expect(
-      screen.getByRole("heading", { name: "Jejak Bali Kuno di Pejeng" }),
+      screen.getByRole("heading", { name: "Jejak peradaban Bali Kuno" }),
     ).toBeInTheDocument();
-    expect(screen.getByText(/Bejana Pejeng merupakan/)).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { name: "Bejana Pejeng" }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", {
+        name: "Tri Mandala: tiga ruang menuju kesucian",
+      }),
+    ).toBeInTheDocument();
     expect(
       screen.getByRole("link", { name: /Baca artikel rujukan lengkap/ }),
-    ).toHaveAttribute(
-      "href",
-      "https://desa-pejeng-home.vercel.app/artikel/pura-pusering-jagat",
-    );
+    ).toHaveAttribute("href", sumber);
+    expect(
+      screen.queryByRole("heading", { name: "Catatan tambahan" }),
+    ).not.toBeInTheDocument();
   });
-  it("tidak memunculkan ulang narasi ketika CMS berhasil memberi konten kosong", async () => {
+  it("tetap menampilkan narasi editorial ketika CMS kosong tanpa catatan tambahan", async () => {
     respond({ rows: [], state: "ready", count: 0 });
     render(await History());
     expect(
-      screen.queryByRole("heading", { name: "Jejak Bali Kuno di Pejeng" }),
+      screen.getByRole("heading", { name: "Di titik tengah semesta" }),
+    ).toBeInTheDocument();
+    expect(
+      screen.queryByRole("heading", { name: "Catatan tambahan" }),
     ).not.toBeInTheDocument();
     expect(
-      screen.getByText("Kisah sedang disusun dengan cermat"),
+      screen.getByRole("navigation", { name: "Bagian sejarah" }),
     ).toBeInTheDocument();
   });
-  it("mengutamakan narasi CMS terbit", async () => {
-    respond({
-      rows: [
-        {
-          id: 1,
-          slug: "kisah-pengelola",
-          title: "Kisah dari pengelola",
-          content: "Narasi terbit dari CMS.",
-        },
-      ],
-      state: "ready",
-      count: 1,
-    });
+  it("menampilkan narasi CMS terbit sebagai catatan tambahan", async () => {
+    respond(catatan);
     render(await History());
+    expect(
+      screen.getByRole("heading", { name: "Catatan tambahan" }),
+    ).toBeInTheDocument();
     expect(
       screen.getByRole("heading", { name: "Kisah dari pengelola" }),
     ).toBeInTheDocument();
     expect(
-      screen.queryByRole("heading", { name: "Jejak Bali Kuno di Pejeng" }),
-    ).not.toBeInTheDocument();
+      screen.getByRole("heading", { name: "Jejak peradaban Bali Kuno" }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("link", { name: /Catatan tambahan/ }),
+    ).toHaveAttribute("href", "#catatan-tambahan");
   });
 });
