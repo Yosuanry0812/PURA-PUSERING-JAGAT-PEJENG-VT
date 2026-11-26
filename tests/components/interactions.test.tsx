@@ -2,7 +2,7 @@ import type { GalleryItem } from "@/lib/gallery-files";
 // @vitest-environment jsdom
 import React from "react";
 import { describe, it, expect, vi } from "vitest";
-import { render, screen, fireEvent, act } from "@testing-library/react";
+import { render, screen, fireEvent, act, within } from "@testing-library/react";
 import { Galeri } from "@/components/public/galeri";
 import { TourViewer } from "@/components/virtual-tour/viewer";
 import { Prose } from "@/components/public/ui";
@@ -29,20 +29,25 @@ const photo = (n: number): GalleryItem => ({
   id: "nista-mandala/foto-" + n + ".jpg",
   category: "nista-mandala",
   type: "image",
+  chroma: false,
   src: "/galeri/nista-mandala/foto-" + n + ".jpg",
   title: "Foto " + n,
+  description: "Penjelasan foto " + n,
 });
 const video: GalleryItem = {
   id: "sejarah/asal-usul.mp4",
   category: "sejarah",
   type: "video",
+  chroma: false,
   src: "/galeri/sejarah/asal-usul.mp4",
   title: "Asal Usul",
+  description: "",
 };
 describe("Galeri", () => {
   it("memfilter lewat tab, membuka detail video, navigasi keyboard, menutup, fokus kembali", () => {
     render(<Galeri items={[photo(1), photo(2), video]} folders={folders} />);
     expect(screen.getAllByRole("listitem")).toHaveLength(3);
+    expect(screen.getByText("Penjelasan foto 2")).toBeInTheDocument();
     fireEvent.click(screen.getByRole("button", { name: "Sejarah" }));
     expect(screen.getAllByRole("listitem")).toHaveLength(1);
     fireEvent.click(screen.getByRole("button", { name: "Semua" }));
@@ -51,10 +56,13 @@ describe("Galeri", () => {
     fireEvent.click(trigger);
     const dialog = screen.getByRole("dialog");
     expect(dialog).toHaveAttribute("open");
-    expect(screen.getByRole("heading", { name: "Foto 1" })).toBeInTheDocument();
+    expect(
+      within(dialog).getByRole("heading", { name: "Foto 1" }),
+    ).toBeInTheDocument();
+    expect(within(dialog).getByText("Penjelasan foto 1")).toBeInTheDocument();
     fireEvent.keyDown(dialog, { key: "ArrowLeft" });
     expect(
-      screen.getByRole("heading", { name: "Asal Usul" }),
+      within(dialog).getByRole("heading", { name: "Asal Usul" }),
     ).toBeInTheDocument();
     expect(dialog.querySelector("video")).toHaveAttribute(
       "src",

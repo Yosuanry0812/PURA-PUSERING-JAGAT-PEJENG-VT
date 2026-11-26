@@ -1,6 +1,7 @@
 import "server-only";
 import { readdir } from "node:fs/promises";
 import path from "node:path";
+import { GALLERY_INFO, fileKey } from "./gallery-info";
 
 // Folder di public/galeri/<slug>/ = satu tab pada halaman /galeri.
 export const GALLERY_FOLDERS = [
@@ -14,8 +15,12 @@ export type GalleryItem = {
   id: string;
   category: string;
   type: "image" | "video";
+  /** Video berlatar bluescreen (folder sejarah): latarnya dihapus di browser. */
+  chroma: boolean;
   src: string;
   title: string;
+  /** Penjelasan singkat objek; kosong bila belum ada di gallery-info. */
+  description: string;
 };
 
 const IMAGE_EXT = new Set([".jpg", ".jpeg", ".png", ".webp", ".avif", ".gif"]);
@@ -51,8 +56,16 @@ export async function readGallery(
     } catch {
       continue;
     }
-    files.sort((a, b) =>
-      a.localeCompare(b, "id", { numeric: true, sensitivity: "base" }),
+    // Berkas terdaftar mengikuti urutan tabel; sisanya urut nama di belakangnya.
+    const info = GALLERY_INFO[folder.slug] ?? [];
+    const rank = (file: string) => {
+      const i = info.findIndex((row) => row[0] === fileKey(file));
+      return i < 0 ? info.length : i;
+    };
+    files.sort(
+      (a, b) =>
+        rank(a) - rank(b) ||
+        a.localeCompare(b, "id", { numeric: true, sensitivity: "base" }),
     );
     for (const file of files) {
       if (file.startsWith(".")) continue;
@@ -63,12 +76,15 @@ export async function readGallery(
           ? "video"
           : null;
       if (!type) continue;
+      const known = info.find((row) => row[0] === fileKey(file));
       items.push({
         id: folder.slug + "/" + file,
         category: folder.slug,
         type,
+        chroma: type === "video" && folder.slug === "sejarah",
         src: "/galeri/" + folder.slug + "/" + encodeURIComponent(file),
-        title: titleFromFile(file),
+        title: known ? known[1] : titleFromFile(file),
+        description: known ? known[2] : "",
       });
     }
   }

@@ -32,6 +32,21 @@ describe("Berkas galeri", () => {
       title: "Asal Usul",
     });
   });
+  it("memakai nama, penjelasan, dan urutan tabel untuk objek terdaftar", async () => {
+    const dir = await mkdtemp(path.join(tmpdir(), "galeri-info-"));
+    await mkdir(path.join(dir, "nista-mandala"));
+    for (const f of ["Wantilan.jpeg", "Bale saka pat 2.jpeg", "Lain.jpeg"])
+      await writeFile(path.join(dir, "nista-mandala", f), "");
+    const items = await readGallery(dir);
+    await rm(dir, { recursive: true, force: true });
+    expect(items.map((i) => i.title)).toEqual([
+      "Bale Saka Pat",
+      "Wantilan",
+      "Lain",
+    ]);
+    expect(items[0].description).toMatch(/pecalang/);
+    expect(items[2].description).toBe("");
+  });
   it("folder yang belum ada tidak membuat galeri gagal", async () => {
     expect(await readGallery(path.join(root, "tidak-ada"))).toEqual([]);
   });

@@ -4,6 +4,20 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { ChevronLeft, ChevronRight, Play, X } from "lucide-react";
 import type { GalleryItem } from "@/lib/gallery-files";
+import { ChromaVideo } from "./chroma-video";
+
+function Backdrop() {
+  return (
+    <span className="galeri-backdrop" aria-hidden="true">
+      <Image
+        src="/gambar/temple.webp"
+        alt=""
+        fill
+        sizes="(max-width: 1060px) 95vw, 1060px"
+      />
+    </span>
+  );
+}
 
 const PER_PAGE = 9;
 
@@ -81,15 +95,28 @@ export function Galeri({
         <ul className="galeri-grid">
           {visible.map((item, i) => (
             <li key={item.id}>
-              <button
-                type="button"
-                className="galeri-card"
-                onClick={(e) =>
-                  show((current - 1) * PER_PAGE + i, e.currentTarget)
-                }
-              >
-                <span className="galeri-thumb">
-                  {item.type === "video" ? (
+              <article className="galeri-card">
+                <button
+                  type="button"
+                  className="galeri-thumb"
+                  aria-label={
+                    "Buka " +
+                    item.title +
+                    (item.type === "video" ? " (video)" : "")
+                  }
+                  onClick={(e) =>
+                    show((current - 1) * PER_PAGE + i, e.currentTarget)
+                  }
+                >
+                  {item.chroma ? (
+                    <>
+                      <Backdrop />
+                      <ChromaVideo src={item.src} label={item.title} />
+                      <span className="galeri-play" aria-hidden="true">
+                        <Play size={22} fill="currentColor" />
+                      </span>
+                    </>
+                  ) : item.type === "video" ? (
                     <>
                       <video
                         src={item.src + "#t=0.1"}
@@ -111,14 +138,15 @@ export function Galeri({
                       sizes="(max-width: 520px) 100vw, (max-width: 900px) 50vw, 420px"
                     />
                   )}
-                </span>
-                <span className="galeri-title">
-                  {item.title}
-                  <small className="sr-only">
-                    {item.type === "video" ? " (video)" : " (foto)"}
-                  </small>
-                </span>
-              </button>
+                </button>
+                <div className="galeri-text">
+                  <p className="galeri-kategori">{labelOf(item.category)}</p>
+                  <h3 className="galeri-title">{item.title}</h3>
+                  {item.description && (
+                    <p className="galeri-desc">{item.description}</p>
+                  )}
+                </div>
+              </article>
             </li>
           ))}
         </ul>
@@ -190,7 +218,18 @@ export function Galeri({
           {selected && (
             <>
               <div className="galeri-stage">
-                {selected.type === "video" ? (
+                {selected.chroma ? (
+                  <>
+                    <Backdrop />
+                    <ChromaVideo
+                      key={selected.id}
+                      src={selected.src}
+                      label={selected.title}
+                      controls
+                      autoPlay
+                    />
+                  </>
+                ) : selected.type === "video" ? (
                   <video
                     key={selected.id}
                     src={selected.src}
@@ -212,6 +251,7 @@ export function Galeri({
                 <div>
                   <span className="eyebrow">{labelOf(selected.category)}</span>
                   <h2 id="galeri-judul">{selected.title}</h2>
+                  {selected.description && <p>{selected.description}</p>}
                 </div>
                 <div className="button-row">
                   <button
