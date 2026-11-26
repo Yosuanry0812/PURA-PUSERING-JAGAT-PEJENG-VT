@@ -1,9 +1,9 @@
-import type { ContentRow } from "@/lib/content";
+import type { GalleryItem } from "@/lib/gallery-files";
 // @vitest-environment jsdom
 import React from "react";
 import { describe, it, expect, vi } from "vitest";
 import { render, screen, fireEvent, act } from "@testing-library/react";
-import { Gallery } from "@/components/public/gallery";
+import { Galeri } from "@/components/public/galeri";
 import { TourViewer } from "@/components/virtual-tour/viewer";
 import { Prose } from "@/components/public/ui";
 vi.mock("next/image", () => ({
@@ -21,50 +21,62 @@ vi.mock("next/image", () => ({
     return React.createElement("img", props);
   },
 }));
-const items: ContentRow[] = [
-  {
-    id: "one",
-    title: "Dokumentasi pengujian satu",
-    category: "Kategori uji",
-    media_type: "photo",
-    media_url: "",
-    image_alt: "Uji satu",
-    description: "Deskripsi satu",
-  },
-  {
-    id: "two",
-    title: "Dokumentasi pengujian dua",
-    category: "Kategori uji",
-    media_type: "video",
-    thumbnail_url: "",
-    video_url: "https://youtu.be/test",
-    description: "Deskripsi dua",
-  },
+const folders = [
+  { slug: "nista-mandala", label: "Nista Mandala" },
+  { slug: "sejarah", label: "Sejarah" },
 ];
+const photo = (n: number): GalleryItem => ({
+  id: "nista-mandala/foto-" + n + ".jpg",
+  category: "nista-mandala",
+  type: "image",
+  src: "/galeri/nista-mandala/foto-" + n + ".jpg",
+  title: "Foto " + n,
+});
+const video: GalleryItem = {
+  id: "sejarah/asal-usul.mp4",
+  category: "sejarah",
+  type: "video",
+  src: "/galeri/sejarah/asal-usul.mp4",
+  title: "Asal Usul",
+};
 describe("Galeri", () => {
-  it("membuka detail, navigasi keyboard, menutup dan mengembalikan fokus", () => {
-    render(<Gallery items={items} />);
-    const trigger = screen.getByRole("button", {
-      name: /Dokumentasi pengujian satu/,
-    });
+  it("memfilter lewat tab, membuka detail video, navigasi keyboard, menutup, fokus kembali", () => {
+    render(<Galeri items={[photo(1), photo(2), video]} folders={folders} />);
+    expect(screen.getAllByRole("listitem")).toHaveLength(3);
+    fireEvent.click(screen.getByRole("button", { name: "Sejarah" }));
+    expect(screen.getAllByRole("listitem")).toHaveLength(1);
+    fireEvent.click(screen.getByRole("button", { name: "Semua" }));
+    const trigger = screen.getByRole("button", { name: /Foto 1/ });
     trigger.focus();
     fireEvent.click(trigger);
     const dialog = screen.getByRole("dialog");
     expect(dialog).toHaveAttribute("open");
+    expect(screen.getByRole("heading", { name: "Foto 1" })).toBeInTheDocument();
+    fireEvent.keyDown(dialog, { key: "ArrowLeft" });
     expect(
-      screen.getByRole("heading", { name: "Dokumentasi pengujian satu" }),
+      screen.getByRole("heading", { name: "Asal Usul" }),
     ).toBeInTheDocument();
-    fireEvent.keyDown(dialog, { key: "ArrowRight" });
-    expect(
-      screen.getByRole("heading", { name: "Dokumentasi pengujian dua" }),
-    ).toBeInTheDocument();
-    expect(
-      screen.getByRole("link", { name: /Tonton dokumentasi/ }),
-    ).toHaveAttribute("href", "https://youtu.be/test");
+    expect(dialog.querySelector("video")).toHaveAttribute(
+      "src",
+      "/galeri/sejarah/asal-usul.mp4",
+    );
     fireEvent.click(screen.getByRole("button", { name: "Tutup detail" }));
     expect(dialog).not.toHaveAttribute("open");
+    expect(dialog.querySelector("video")).toBeNull();
     expect(trigger).toHaveFocus();
     expect(document.body.style.overflow).toBe("");
+  });
+  it("membagi 9 media per halaman dan menampilkan pesan bila kategori kosong", () => {
+    const many = Array.from({ length: 11 }, (_, n) => photo(n + 1));
+    render(<Galeri items={many} folders={folders} />);
+    expect(screen.getAllByRole("listitem")).toHaveLength(9);
+    fireEvent.click(screen.getByRole("button", { name: "Halaman 2" }));
+    expect(screen.getAllByRole("listitem")).toHaveLength(2);
+    fireEvent.click(screen.getByRole("button", { name: "Sejarah" }));
+    expect(screen.getByText(/Belum ada foto atau video/)).toBeInTheDocument();
+    expect(
+      screen.queryByRole("navigation", { name: "Halaman galeri" }),
+    ).toBeNull();
   });
 });
 describe("Tur eksternal", () => {

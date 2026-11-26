@@ -24,6 +24,19 @@ Ketika CMS belum terkonfigurasi atau tidak terjangkau, Beranda, Sejarah, dan Ten
 
 Tautan Beranda menuju `/virtual-tour` selalu aktif. Halaman tur menyediakan tombol **Buka Virtual Tour 360°**: tanpa URL, tombol menampilkan status belum tersedia; dengan URL valid, tombol membuka output HTML5 di tab baru dan penampil iframe tersedia secara opsional.
 
+## Galeri (berbasis folder)
+
+Halaman `/galeri` membaca berkas langsung dari folder, tanpa database:
+
+| Folder                         | Tab                    |
+| ------------------------------ | ---------------------- |
+| `public/galeri/nista-mandala/` | Nista Mandala          |
+| `public/galeri/madya-mandala/` | Madya Mandala          |
+| `public/galeri/utama-mandala/` | Utama Mandala          |
+| `public/galeri/sejarah/`       | Sejarah (video `.mp4`) |
+
+Taruh foto (`.jpg .jpeg .png .webp .avif .gif`) atau video (`.mp4 .webm .m4v`) di folder tersebut. Tab "Semua" menampilkan seluruh isi keempat folder. Judul kartu diambil dari nama berkas (`jaba-tengah.jpg` → "Jaba Tengah"); awalan angka (`01-`) dipakai untuk mengurutkan dan tidak ditampilkan. Satu halaman memuat 9 media. Setelah menambah berkas, jalankan ulang `pnpm dev` / `pnpm build` bila daftar belum berubah. Hindari berkas video di atas 100 MB karena batas GitHub.
+
 ## Menjalankan aplikasi
 
 Gunakan Node.js 22 atau 24 dan npm. Dependency dikunci dalam `package-lock.json`.
