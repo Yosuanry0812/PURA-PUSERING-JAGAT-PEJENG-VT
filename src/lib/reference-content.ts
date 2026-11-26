@@ -56,12 +56,13 @@ export const referenceHome: ContentRow = {
 export const referenceAbout: ContentRow = {
   id: "reference-about",
   title: "Tentang Pura Pusering Jagat Pejeng",
-  image_url: "reference/main-gate.webp",
-  image_alt: "Gerbang utama Pura Pusering Jagat Pejeng",
+  image_url: "reference/temple.webp",
+  image_alt:
+    "Halaman pura dengan pelinggih, gapura belah, dan dua arca penjaga di Pura Pusering Jagat Pejeng",
   background:
-    "Website ini memperkenalkan Pura Pusering Jagat Pejeng melalui narasi sejarah, dokumentasi visual, dan pengalaman virtual 360°. Pengunjung dapat mengenal konteks budaya sebelum menjelajahi setiap halaman.\n\nNarasi awal dirangkum dan disesuaikan dari artikel Tim KKN Desa Pejeng. Sumber tersebut mencantumkan Jero Mangku Pura Puser Ing Jagat sebagai narasumber. Pembaca dapat menelusuri artikel asli melalui tautan rujukan di bawah.",
+    "Pura Pusering Jagat Pejeng sudah lama dikunjungi umat dan wisatawan, tetapi cerita di balik tiap pelinggih dan arcanya jarang tertulis rapi. Situs ini mengumpulkannya di satu tempat: sejarah yang sumbernya bisa ditelusuri, foto objek di setiap halaman pura, dan jelajah virtual 360° yang bisa dibuka sebelum Anda datang.\n\nNarasi awal dirangkum dari artikel Tim KKN Desa Pejeng, dengan Jero Mangku Pura Puser Ing Jagat sebagai narasumber. Hal yang belum pasti, seperti tahun pendirian pura, kami tulis apa adanya sebagai perkiraan.",
   purpose:
-    "Memudahkan pengunjung menemukan sejarah, memahami makna peninggalan, dan mengenal tata ruang pura. Tautan sumber disertakan agar pembaca dapat menelusuri narasi lebih lanjut.",
+    "Menyediakan satu tempat untuk belajar tentang pura: sejarah dengan sumber yang jelas, makna pelinggih dan peninggalan, serta tata ruang Tri Mandala. Tautan rujukan disertakan agar pembaca bisa menelusuri artikel aslinya.",
   benefits:
-    "Menyediakan ruang belajar budaya yang dapat diakses dari berbagai tempat. Dokumentasi digital membantu pengenalan warisan kepada generasi berikutnya, dengan tetap mengikuti izin dan arahan pengelola pura.",
+    "Siapa pun bisa mengenal pura sebelum datang, termasuk mereka yang belum sempat berkunjung langsung. Dokumentasi digital membantu mewariskan pengetahuan ini kepada generasi berikutnya, tanpa menggantikan kunjungan maupun aturan yang ditetapkan pengelola pura.",
 };

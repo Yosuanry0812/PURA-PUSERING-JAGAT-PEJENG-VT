@@ -1,0 +1,185 @@
+/* Halaman Tentang Kami: mengikuti wireframe (foto + teks, lalu kredit terpusat) */
+.public-site .about-page {
+  overflow-x: clip;
+}
+
+/* Foto kiri, teks kanan */
+.public-site .ab-story {
+  display: grid;
+  grid-template-columns: 1fr 1.05fr;
+  gap: 56px;
+  align-items: stretch;
+  padding-bottom: 72px;
+  border-bottom: 1px solid #ffffff30;
+}
+.public-site .ab-photo {
+  display: grid;
+}
+.public-site .ab-photo .media {
+  aspect-ratio: auto;
+  min-height: 320px;
+  border: 1px solid #ffffffaa;
+  border-radius: 10px;
+}
+.public-site .ab-text {
+  padding: 36px 40px;
+  background: rgba(8, 12, 8, 0.55);
+  border: 1px solid #ffffff55;
+  border-radius: 12px;
+  backdrop-filter: blur(6px);
+}
+.public-site .ab-text h2 {
+  font-size: clamp(24px, 2.6vw, 30px);
+  line-height: 1.3;
+  margin: 4px 0 22px;
+}
+.public-site .ab-text .prose {
+  margin-bottom: 14px;
+}
+.public-site .ab-text .prose p {
+  font-size: 14.5px;
+  line-height: 1.9;
+  color: #ffffffeb;
+}
+.public-site .ab-text .prose:first-of-type p:first-child {
+  font-size: 16.5px;
+  line-height: 1.85;
+  color: #fff;
+}
+.public-site .ab-text .source-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 6px;
+  font-size: 13px;
+  color: #f4dd8d;
+}
+
+/* Kredit: terpusat */
+.public-site .ab-credits {
+  display: grid;
+  justify-items: center;
+  text-align: center;
+  padding-top: 64px;
+}
+.public-site .ab-credits header h2 {
+  font-size: clamp(28px, 4vw, 40px);
+  line-height: 1.2;
+}
+.public-site .ab-credits header h2::after {
+  content: "";
+  display: block;
+  width: 56px;
+  height: 2px;
+  margin: 16px auto 0;
+  background: #f4dd8d;
+}
+.public-site .ab-credits header p {
+  margin-top: 16px;
+  font-size: 15px;
+  color: #ffffffe6;
+}
+.public-site .ab-panel {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
+  max-width: 920px;
+  margin-top: 48px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid #ffffff66;
+  border-radius: 12px;
+}
+.public-site .ab-group {
+  padding: 36px 32px 40px;
+}
+.public-site .ab-group + .ab-group {
+  border-left: 1px solid #ffffff55;
+}
+.public-site .ab-group h3 {
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #f4dd8d;
+  margin-bottom: 26px;
+}
+.public-site .ab-names {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 22px;
+}
+.public-site .ab-names li {
+  display: grid;
+  gap: 4px;
+}
+.public-site .ab-names span {
+  font-size: 12.5px;
+  letter-spacing: 0.04em;
+  color: #ffffffcc;
+}
+.public-site .ab-names strong {
+  font-size: 18px;
+  line-height: 1.5;
+}
+.public-site .ab-empty {
+  font-size: 14px;
+  color: #ffffffcc;
+}
+
+/* Logo pihak terlibat (muncul bila diisi) */
+.public-site .ab-logos {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 36px;
+  margin-top: 64px;
+}
+.public-site .ab-logos .media {
+  width: 96px;
+  aspect-ratio: 1;
+}
+
+@media (max-width: 900px) {
+  .public-site .ab-story {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    padding-bottom: 52px;
+  }
+  .public-site .ab-photo .media {
+    aspect-ratio: 16 / 10;
+    min-height: 0;
+  }
+  .public-site .ab-text {
+    padding: 28px 24px;
+  }
+  .public-site .ab-credits {
+    padding-top: 48px;
+  }
+  .public-site .ab-panel {
+    grid-template-columns: 1fr;
+  }
+  .public-site .ab-group {
+    padding: 30px 24px;
+  }
+  .public-site .ab-group + .ab-group {
+    border-left: 0;
+    border-top: 1px solid #ffffff55;
+  }
+}
+
+/* Logo kampus penyusun: plat putih karena teks logo berwarna gelap */
+.public-site .ab-logo {
+  width: 220px;
+  max-width: 100%;
+  margin: 28px auto 0;
+  padding: 12px 18px;
+  background: #fff;
+  border-radius: 8px;
+}
+.public-site .ab-logo img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
