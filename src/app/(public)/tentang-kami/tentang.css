@@ -81,16 +81,16 @@
 }
 .public-site .ab-panel {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(3, 1fr);
   width: 100%;
-  max-width: 920px;
+  max-width: 1180px;
   margin-top: 48px;
   background: rgba(255, 255, 255, 0.08);
   border: 1px solid #ffffff66;
   border-radius: 12px;
 }
 .public-site .ab-group {
-  padding: 36px 32px 40px;
+  padding: 36px 28px 40px;
 }
 .public-site .ab-group + .ab-group {
   border-left: 1px solid #ffffff55;

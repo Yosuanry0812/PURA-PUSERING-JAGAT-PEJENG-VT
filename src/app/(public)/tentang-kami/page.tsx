@@ -8,6 +8,7 @@ import {
   aboutLogos,
   aboutPlace,
   aboutStory,
+  aboutSupervisors,
   aboutTeam,
   aboutThanks,
 } from "@/lib/about-content";
@@ -124,6 +125,19 @@ export default async function About() {
                     <strong>{p.name}</strong>
                   </li>
                 ))}
+              </ul>
+            </div>
+            <div className="ab-group">
+              <h3>{aboutSupervisors.title}</h3>
+              <ul className="ab-names">
+                {aboutSupervisors.people
+                  .filter((p) => p.name)
+                  .map((p) => (
+                    <li key={p.role}>
+                      <span>{p.role}</span>
+                      <strong>{p.name}</strong>
+                    </li>
+                  ))}
               </ul>
             </div>
           </div>

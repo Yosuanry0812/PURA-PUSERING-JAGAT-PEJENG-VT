@@ -41,18 +41,34 @@ export const aboutTeam = {
   empty: "Nama tim penyusun akan segera dicantumkan.",
 };
 
+// Kotak 2: ucapan terima kasih kepada pihak di Desa Pejeng.
 export const aboutThanks = {
   title: "Terima kasih kepada",
   people: [
     {
-      role: "Dosen Pembimbing",
+      role: "Pemangku Pura Pusering Jagat, Desa Pejeng",
+      name: "Jero Mangku Dewa Ngakan Putu Bagiana",
+    },
+    {
+      role: "Penjaga tradisi pura",
+      name: "Masyarakat Desa Pejeng",
+    },
+  ],
+};
+
+// Kotak 3: dosen pembimbing. Entri dengan nama kosong tidak ditampilkan.
+export const aboutSupervisors = {
+  title: "Pembimbing",
+  people: [
+    {
+      role: "Dosen Pembimbing 1",
       name: "Ir. Ida Bagus Ary Indra Iswara, S.Kom., M.Kom.",
     },
     {
-      role: "Pemangku Pura Pusering Jagat",
-      name: "Dewa Ngakan Putu Bagiana",
+      role: "Dosen Pembimbing 2",
+      name: "Dr. I Nyoman Agus Suarya Putra, S.Sn., M.Sn.",
     },
-  ],
+  ] as { role: string; name: string }[],
 };
 
 // Logo pihak yang terlibat (kampus dll.), baris bawah wireframe. Isi bila berkas
