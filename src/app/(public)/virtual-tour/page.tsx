@@ -36,7 +36,7 @@ const glimpse = [
   { path: "reference/shrine-umbrellas.webp", alt: "Pelinggih berpayung" },
 ];
 // Tur 360° dipublikasikan di GitHub Pages; dipakai sebagai bawaan agar tombol langsung aktif.
-const DEFAULT_TOUR_URL = "https://yosuanry0812.github.io/pusering-jagat-tour/";
+const DEFAULT_TOUR_URL = "https://yosuanry0812.github.io/pura-pusering-jagat-360/";
 const DEFAULT_TOUR_HOST = "yosuanry0812.github.io";
 const delay = (i: number) => ({ "--d": i * 100 + "ms" }) as CSSProperties;
 
