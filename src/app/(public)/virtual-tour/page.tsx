@@ -35,6 +35,9 @@ const glimpse = [
   { path: "reference/temple.webp", alt: "Halaman pura dengan pelinggih" },
   { path: "reference/shrine-umbrellas.webp", alt: "Pelinggih berpayung" },
 ];
+// Tur 360° dipublikasikan di GitHub Pages; dipakai sebagai bawaan agar tombol langsung aktif.
+const DEFAULT_TOUR_URL = "https://yosuanry0812.github.io/pusering-jagat-tour/";
+const DEFAULT_TOUR_HOST = "yosuanry0812.github.io";
 const delay = (i: number) => ({ "--d": i * 100 + "ms" }) as CSSProperties;
 
 export default async function Tour() {
@@ -42,8 +45,10 @@ export default async function Tour() {
   const t = tour.rows[0];
   const url = resolveTourUrl(
     t,
-    process.env.VIRTUAL_TOUR_URL ?? "",
-    process.env.TOUR_ALLOWED_HOSTS ?? "",
+    process.env.VIRTUAL_TOUR_URL || DEFAULT_TOUR_URL,
+    [process.env.TOUR_ALLOWED_HOSTS, DEFAULT_TOUR_HOST]
+      .filter(Boolean)
+      .join(","),
   );
   return (
     <>
